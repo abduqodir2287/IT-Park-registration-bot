@@ -47,6 +47,7 @@ async def get_fullname(message: types.Message, state: FSMContext):
     else:
         await state.update_data(fullname=message.text.strip())
         await FSMAdmin.next()
+        print("Success")
         await message.reply("Telefon raqamingizni kiriting(+998...): ")
 
 
@@ -57,6 +58,7 @@ async def get_PhoneNumber(message: types.Message, state: FSMContext):
     else:
         await state.update_data(phoneNumber=message.text.strip())
         await FSMAdmin.next()
+        print("Success")
         await message.reply("Qanday yo`nalishda o`qimoqchisiz: 👇👇", reply_markup=menu)
 
 
@@ -67,6 +69,7 @@ async def get_course(message: types.Message, state: FSMContext):
     else:
         await state.update_data(course=message.text.strip())
         await FSMAdmin.next()
+        print("Success")
         await message.answer("Tug'ilgan sana (masalan 31.12.2000)", reply_markup=cansel_btn)
 
 async def get_birthday(message: types.Message, state: FSMContext):
@@ -76,6 +79,7 @@ async def get_birthday(message: types.Message, state: FSMContext):
     else:
         await state.update_data(birthday=message.text.strip())
         await FSMAdmin.next()
+        print("Success")
         await message.reply("Jinsingizni tanlang👇👇", reply_markup=jinsi_menu)
 
 async def get_jinsi(message: types.Message, state: FSMContext):
@@ -87,6 +91,7 @@ async def get_jinsi(message: types.Message, state: FSMContext):
         await FSMAdmin.next()
         await message.bot.send_photo(chat_id=message.from_user.id,
                                      photo=InputFile("D:\IT dars\photo_2023-11-23_18-19-18.jpg"))
+        print("Success")
         await message.reply("Face ID uchun o'z rasmingizni yuklang", reply_markup=cansel_btn)
 
 
