@@ -3,7 +3,6 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from aiogram.types import InputFile
 
 from bot_buttons import cansel_btn, menu, add_btn, jinsi_menu
 from new_itpark_bot_class import New_itpark_bot_helperDB
@@ -32,7 +31,7 @@ async def start_command(message: types.Message):
     await message.reply(f'Assalomu aleykum {message.from_user.username}'
                         f' ITParkning rasmiy botiga hush kelibsiz')
     await message.answer("IT kurslarda o'qishni boshlaganingizdan xursandmiz."
-                         "sizni talaba sifatida ro‘yxatdan o‘tkazishimiz uchun "
+                         "sizni talaba sifatida ro‘yxatdan o‘tkazishimiz uchun,"
                          "siz o'z ma’lumotlaringizni to‘g‘ri to‘ldirishingiz lozim.\n"
                          "\n"
                          "Qani kettik!")
@@ -47,7 +46,6 @@ async def get_fullname(message: types.Message, state: FSMContext):
     else:
         await state.update_data(fullname=message.text.strip())
         await FSMAdmin.next()
-        print("Success")
         await message.reply("Telefon raqamingizni kiriting(+998...): ")
 
 
@@ -58,8 +56,7 @@ async def get_PhoneNumber(message: types.Message, state: FSMContext):
     else:
         await state.update_data(phoneNumber=message.text.strip())
         await FSMAdmin.next()
-        print("Success")
-        await message.reply("Qanday yo`nalishda o`qimoqchisiz: 👇👇", reply_markup=menu)
+        await message.reply("Qanday yo`nalishda o`qimoqchisiz: ", reply_markup=menu)
 
 
 async def get_course(message: types.Message, state: FSMContext):
@@ -69,7 +66,6 @@ async def get_course(message: types.Message, state: FSMContext):
     else:
         await state.update_data(course=message.text.strip())
         await FSMAdmin.next()
-        print("Success")
         await message.answer("Tug'ilgan sana (masalan 31.12.2000)", reply_markup=cansel_btn)
 
 async def get_birthday(message: types.Message, state: FSMContext):
@@ -79,7 +75,6 @@ async def get_birthday(message: types.Message, state: FSMContext):
     else:
         await state.update_data(birthday=message.text.strip())
         await FSMAdmin.next()
-        print("Success")
         await message.reply("Jinsingizni tanlang👇👇", reply_markup=jinsi_menu)
 
 async def get_jinsi(message: types.Message, state: FSMContext):
@@ -89,9 +84,6 @@ async def get_jinsi(message: types.Message, state: FSMContext):
     else:
         await state.update_data(jinsi=message.text.strip())
         await FSMAdmin.next()
-        await message.bot.send_photo(chat_id=message.from_user.id,
-                                     photo=InputFile("D:\IT dars\photo_2023-11-23_18-19-18.jpg"))
-        print("Success")
         await message.reply("Face ID uchun o'z rasmingizni yuklang", reply_markup=cansel_btn)
 
 
@@ -149,3 +141,5 @@ async def on_shutdown(dp: Dispatcher):
 if __name__ == "__main__":
     register_handler_admin(dp)
     executor.start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown, skip_updates=True)
+
+
