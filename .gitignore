@@ -1,3 +1,5 @@
 config.py
 ITPark_bot.py
 itpark_bot_class.py
+.idea
+.gitignore
